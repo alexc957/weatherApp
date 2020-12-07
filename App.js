@@ -1,8 +1,10 @@
 
 import React, { useEffect, useReducer, useState } from 'react';
-import { Button, LogBox, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, LogBox, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Weather from './components/weather';
 import { FontAwesome5 } from '@expo/vector-icons'; 
+
+import Forecast from './components/Forecast';
 const apiKey = '88fcaeb42b2ff317338c6c1030bda284';
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=';
 
@@ -14,6 +16,8 @@ const defaultState = {
   tempMin: '',
   humidity: '',
   icon: '',
+  lon: '',
+  lat: '',
   ready: false,
 }
 
@@ -41,6 +45,8 @@ export default function App() {
           humidity: jsonData['main']['humidity'],
           weather: jsonData['weather'][0]['main'],
           icon: jsonData.weather[0].icon,
+          lat: jsonData.coord.lat,
+          lon: jsonData.coord.lon,
           ready: true,
 
         }
@@ -87,6 +93,7 @@ export default function App() {
             placeholder="city"
             
             onChangeText={input => setSearchCity(input)}
+            onSubmitEditing={(e)=>submit()}
             value={searchCity}
           
       
@@ -95,12 +102,7 @@ export default function App() {
             <TouchableOpacity onPress={submit}>
               <FontAwesome5 name="search" size={24} color="black" />
 
-            </TouchableOpacity>
-       
-            
-     
-          
-     
+            </TouchableOpacity> 
 
       </View>
 
@@ -109,13 +111,17 @@ export default function App() {
 
     
 
-      {state.ready &&  <Weather  {...state} />}
+      {state.ready &&  <Weather  {...state} /> }
+      {state.ready && <Forecast lon={state.lon} lat={state.lat} />}
 
-     
+
+
+       
      
 
 
       </View>
+      
 
       
     </View>
@@ -143,11 +149,12 @@ const styles = StyleSheet.create({
 
   },
   mainContainer: {
-    marginTop: '15%',
+    marginTop: '8%',
     flex: 1,
     flexDirection: 'column',
     alignContent: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    marginBottom: '4%',
   },
   input: {
     width: 90,
@@ -158,6 +165,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 1,
     
-  }
+  },
+
 
 });

@@ -39,8 +39,9 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         borderRadius: 5,
         borderWidth: 2,
-        width: 120,
-        height: 120
+        width: 160,
+        height: 195,
+        backgroundColor: '#87CEFA'
     },
     textContainer: {
         paddingTop: 5,
