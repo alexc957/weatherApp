@@ -4,44 +4,56 @@ import ForecastCard from './ForecastCard';
 
 
 
-const fetchData = async () => {
-    try {
-        console.log('calling');
 
-        const data = await fetch(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=-0.23&lon=-78.52&exclude=alerts,minutely,hourly&appid=88fcaeb42b2ff317338c6c1030bda284&units=metric`
 
-        )
-        const jsonData = await data.json();
-        console.log(jsonData);
-    }catch(error){
-        console.log('error?');
-        console.log(error);
-    }
-}
+const URL = 'http://192.168.100.19:5000/forecast?'
+
 export default function Forecast({lon,lat}) {
 
 
- 
+    
+
+     
     const [forecastList,setForecastList] = useState([])
+    const [errorMessage, setErrorMessage] = useState('')
+
+
+    const fetchData = async () => {
+        try {
+            console.log('calling');
+    
+            const data = await fetch(
+                `${URL}lat=${lat}&lon=${lon}`
+    
+            )
+
+            if(data.status===200){
+                const jsonData = await data.json();
+                setForecastList(jsonData)
+                setErrorMessage('')
+
+            } else {
+                const message = await data.json()
+                setErrorMessage(message.message)
+            }
+            
+        }catch(error){
+            console.log('error?');
+            console.log(error);
+        }
+    }
+
     useEffect(()=> {
-        console.log(lon);
-        console.log(lat);
-        console.log('callling by ');
+        
+
+ 
         fetchData()
-    },[])
+    },[lat,lon])
     
 
     return (
         <ScrollView horizontal={true} style={styles.forecastContainer}>
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
+          {forecastList.map(day => <ForecastCard {...day} key={day.dt}  />)}
        </ScrollView>   
     )
 
@@ -55,7 +67,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     
         overflow: 'scroll',
-        height: 150,
+        height: 185,
         width: 250,
         marginTop: 25,
     

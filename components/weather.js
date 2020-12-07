@@ -5,7 +5,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
      
 export default function Weather({location, weather,temperature, tempMax,tempMin,humidity,icon}) {
-    console.log(icon);
+    console.log('icon?',icon);
     const url = 'http://openweathermap.org/img/wn/'+icon+'@2x.png';
     console.log(url);
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     icon: {
         
         borderColor: 'gray',
-        borderRadius: 5,
+        borderRadius: 25,
         borderWidth: 2,
         width: 160,
         height: 195,

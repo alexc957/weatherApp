@@ -5,8 +5,8 @@ import Weather from './components/weather';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
 import Forecast from './components/Forecast';
-const apiKey = '88fcaeb42b2ff317338c6c1030bda284';
-const API_URL = 'https://api.openweathermap.org/data/2.5/weather?q=';
+
+const API_URL = 'http://192.168.100.19:5000/weather?location=';
 
 const defaultState = {
   location: 'Quito',
@@ -19,6 +19,7 @@ const defaultState = {
   lon: '',
   lat: '',
   ready: false,
+
 }
 
 
@@ -26,36 +27,48 @@ export default function App() {
   
   const [state, setState] = useState(defaultState)
   const [searchCity, setSearchCity] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+
+
+
+
  
 
   const fetchData = async () => {
     
     try{
+      console.log('sfd? ',`${API_URL}${state.location}`);
       const data = await fetch(
-        `${API_URL}${state.location}&appid=${apiKey}&units=metric`
+        `${API_URL}${state.location}`
       )
-      const jsonData = await data.json()
-      console.log(jsonData);
-      setState((prevState)=> {
-        return {
-          ...prevState,
-          temperature: jsonData.main.temp,
-          tempMax: jsonData.main.temp_max,
-          tempMin: jsonData.main.temp_min,
-          humidity: jsonData['main']['humidity'],
-          weather: jsonData['weather'][0]['main'],
-          icon: jsonData.weather[0].icon,
-          lat: jsonData.coord.lat,
-          lon: jsonData.coord.lon,
-          ready: true,
-
-        }
+      console.log(data.status);
+      if(data.status===200){
+        const jsonData = await data.json()
+      
+      setState({
+        ...jsonData,
+        ready: true
+   
       })
+      setErrorMessage('')
+
+      }else {
+        const message = await data.json()
+        setState({
+          ...state,
+          ready: false,
+        })
+        setErrorMessage(message.message)
+      }
+
+
+      
      
   
 
     } catch (error){
       console.log(error);
+      setErrorMessage('error')
 
     }
    
@@ -69,7 +82,7 @@ export default function App() {
     setState( {
       
         ...state,
-        ready: false,
+   
         location: searchCity
       
     })
@@ -95,35 +108,18 @@ export default function App() {
             onChangeText={input => setSearchCity(input)}
             onSubmitEditing={(e)=>submit()}
             value={searchCity}
-          
-      
-            
             />  
-            <TouchableOpacity onPress={submit}>
+          <TouchableOpacity onPress={submit}>
               <FontAwesome5 name="search" size={24} color="black" />
-
-            </TouchableOpacity> 
+          </TouchableOpacity> 
 
       </View>
 
-      <View style={styles.container}>
-
-
-    
-
-      {state.ready &&  <Weather  {...state} /> }
-      {state.ready && <Forecast lon={state.lon} lat={state.lat} />}
-
-
-
-       
+      <View style={styles.container}>    
+        {errorMessage? <Text>{errorMessage}</Text> : state.ready ?  <Weather  {...state} /> : <View></View>}
+        {state.ready && <Forecast lon={state.lon} lat={state.lat} />}        
+      </View> 
      
-
-
-      </View>
-      
-
-      
     </View>
    
   );
