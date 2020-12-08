@@ -20,7 +20,7 @@ export default function Weather({location, weather,temperature, tempMax,tempMin,
             }} />
       <View style={styles.textContainer}>
 
-        <Text>City: {location} </Text>
+      
         <Text>Weather: {weather}</Text>
         <Text>Temperature: {temperature}° C</Text>
         <Text>Max temperature {tempMax}° C</Text>

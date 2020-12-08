@@ -3,10 +3,10 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { Button, LogBox, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Weather from './components/weather';
 import { FontAwesome5 } from '@expo/vector-icons'; 
-
+import * as Location from 'expo-location';
 import Forecast from './components/Forecast';
 
-const API_URL = 'http://192.168.100.19:5000/weather?location=';
+const API_URL = 'http://192.168.100.19:5000/weather';
 
 const defaultState = {
   location: 'Quito',
@@ -28,6 +28,9 @@ export default function App() {
   const [state, setState] = useState(defaultState)
   const [searchCity, setSearchCity] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const [currentLocation, setCurrentLocation] = useState(null)
+
+  
 
 
 
@@ -35,18 +38,21 @@ export default function App() {
  
 
   const fetchData = async () => {
+
     
     try{
-      console.log('sfd? ',`${API_URL}${state.location}`);
+     
+  
       const data = await fetch(
-        `${API_URL}${state.location}`
+        `${API_URL}?location=${state.location}`
       )
-      console.log(data.status);
+   
       if(data.status===200){
         const jsonData = await data.json()
       
       setState({
         ...jsonData,
+        location: jsonData.location? jsonData.location : state.location,
         ready: true
    
       })
@@ -70,8 +76,7 @@ export default function App() {
       console.log(error);
       setErrorMessage('error')
 
-    }
-   
+    } 
     
     
     
@@ -87,13 +92,18 @@ export default function App() {
       
     })
   }
+
+
+ 
   
   useEffect(()=> {    
-
-    fetchData();    
-
-
-  }, [state.location])
+  
+      if(state.location){
+        fetchData()
+      }
+   
+      
+  }, [state.location]) 
 
 
 
