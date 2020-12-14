@@ -1,33 +1,12 @@
 
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, LogBox, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import Weather from './components/weather';
-import { FontAwesome5 } from '@expo/vector-icons'; 
-import * as Location from 'expo-location';
-import Forecast from './components/Forecast';
 import WeatherContainer from './components/WeatherContainer';
+import * as Location from 'expo-location';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const API_URL = 'http://192.168.100.19:5000/weather';
-
-const defaultState = {
-  location: 'Quito',
-  temperature: '',
-  weather: 'light rain',
-  tempMax: '',
-  tempMin: '',
-  humidity: '',
-  icon: '',
-  lon: '',
-  lat: '',
-  ready: false,
-
-}
-
-
-
-export default function App() {
-  
-
+function HomeScreen(params) {
   const [errorMessage, setErrorMessage] = useState('')
   const [coordinates,setCoordinates] = useState(null)
 
@@ -62,7 +41,28 @@ export default function App() {
       {errorMessage}
     </Text>
   )
+  
+}
 
+function MapScreen(){
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Map!</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Map" component={MapScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  )
+  
  
 }
 

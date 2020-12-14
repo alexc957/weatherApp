@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     
         overflow: 'scroll',
-        height: 185,
+        height: 160,
         width: 250,
         marginTop: 25,
     
