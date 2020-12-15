@@ -3,7 +3,7 @@ import { Button, LogBox, ScrollView, StyleSheet, Text, TextInput, TouchableOpaci
 import Weather from './weather';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import Forecast from './Forecast';
-const API_URL = 'http://192.168.100.19:5000/weather';
+const API_URL = 'http://192.168.100.20:5000/weather';
 
 const defaultState = {
   location: '',
@@ -28,12 +28,13 @@ export default function WeatherContainer({lat,lon}) {
     
   const fetchData = async () => {
 
-    
+    const fetchUrl = state.location? `${API_URL}?location=${state.location}` : `${API_URL}?lat=${lat}&lon=${lon}`
     try{     
-  
+      
       const data = await fetch(
-        state.location? `${API_URL}?location=${state.location}` : `${API_URL}?lat=${lat}&lon=${lon}`
+        fetchUrl
       )
+      
    
       if(data.status===200){
         const jsonData = await data.json()
@@ -57,7 +58,7 @@ export default function WeatherContainer({lat,lon}) {
   
     } catch (error){
       console.log(error);
-      setErrorMessage('error')
+      setErrorMessage('error cant get data lol '+fetchUrl)
 
    }
   }
@@ -84,8 +85,9 @@ export default function WeatherContainer({lat,lon}) {
 
     return (
 
+        
         <View style={styles.mainContainer}>
-        <View style={styles.searchContainer}>
+          <View style={styles.searchContainer}>
             <TextInput
               style={styles.input} 
               placeholder="city"
@@ -98,12 +100,12 @@ export default function WeatherContainer({lat,lon}) {
                 <FontAwesome5 name="search" size={24} color="black" />
             </TouchableOpacity> 
   
-        </View>
+          </View>
   
-        <View style={styles.container}>    
-          {errorMessage? <Text>{errorMessage}</Text> : state.ready ?  <Weather  {...state} /> : <View></View>}
-          {state.ready && <Forecast lon={state.lon} lat={state.lat} />}        
-        </View> 
+          <View style={styles.container}>    
+            {errorMessage? <Text>{errorMessage}</Text> : state.ready ?  <Weather  {...state} /> : <View></View>}
+            {state.ready && <Forecast lon={state.lon} lat={state.lat} />}        
+          </View> 
        
       </View>
     )
