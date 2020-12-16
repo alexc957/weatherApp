@@ -22,13 +22,19 @@ const styles = StyleSheet.create({
 
   class MapScreen extends React.Component {
 
+    constructor(props){
+      super(props)
+
+    }
+
     static contextType = MyContext;
 
     render(){
-      const {latitude,longitude,latitudeDelta, longitudeDelta} = this.context;
+      const latitudeDelta = 0.0922;
+      const longitudeDelta = 0.0421;
       return  <View style={styles.container}>
-      <MapView style={styles.map} region={{latitude,longitude,latitudeDelta, longitudeDelta}} >
-        <Marker  coordinate={{latitude,longitude}} />
+      <MapView style={styles.map} region={{latitude: this.props.lat,longitude: this.props.lon,latitudeDelta, longitudeDelta}} >
+        <Marker  coordinate={{latitude:this.props.lat,longitude:this.props.lon}} />
       </MapView>
     </View>
 

@@ -17,7 +17,9 @@ class Forecast extends React.Component {
         super(props)
         this.state = {
             forecastList: [],
-            errorMessage: ''
+            errorMessage: '',
+            lat: this.props.lat,
+            lon: this.props.lon,
         }
         this.fetchDat = this.fetchDat.bind(this)
     }
@@ -31,6 +33,13 @@ class Forecast extends React.Component {
        // this.context.updateCoordinates(this.props.lat,this.props.lon);
        console.log('eh?');
     }
+
+   /* shouldComponentUpdate(nextProps,nextState){
+        return Math.abs( this.state.lat - nextProps.lat)>0.2 || Math.abs(this.state.lon - nextProps.lon)>0.2;
+    }*/
+
+
+    
   
 
 
@@ -40,7 +49,7 @@ class Forecast extends React.Component {
             
     
             const data = await fetch(
-                `${URL}lat=${this.props.lat}&lon=${this.props.lon}`
+                `${URL}lat=${this.state.lat}&lon=${this.state.lon}`
     
             )
 
