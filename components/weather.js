@@ -5,9 +5,8 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
      
 export default function Weather({location, weather,temperature, tempMax,tempMin,humidity,icon}) {
-    console.log('icon?',icon);
+    
     const url = 'http://openweathermap.org/img/wn/'+icon+'@2x.png';
-    console.log(url);
 
   
 

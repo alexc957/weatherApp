@@ -42,8 +42,7 @@ export default function Forecast({lon,lat}) {
             }
             
         }catch(error){
-            console.log('error?');
-            console.log(error);
+         setErrorMessage("Could Not get any data")
         }
     }
 

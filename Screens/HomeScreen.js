@@ -3,6 +3,7 @@ import {  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nati
 import Weather from '../components//weather';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import Forecast from '../components/Forecast';
+import { MaterialIcons } from '@expo/vector-icons';
 const API_URL = 'http://192.168.100.20:5000/weather';
 /* export default function HomeScreen({coordinates, setCoordinates}) {
     
@@ -73,7 +74,7 @@ const fetchData = async () => {
     }
 
   } catch (error){
-    console.log(error);
+   
     setErrorMessage('error cant get data lol '+fetchUrl)
 
  }
@@ -119,7 +120,10 @@ useEffect(()=> {
         </View>
 
         <View style={styles.container}>    
-          {errorMessage? <Text>{errorMessage}</Text> : state.ready ?  <Weather  {...state} /> : <View></View>}
+          {errorMessage? <View style={styles.error}>
+            <MaterialIcons name="error-outline" size={100} color="red" />
+            <Text>{errorMessage}</Text> 
+            </View> : state.ready ?  <Weather  {...state} /> : <View></View>}
           {state.ready && <Forecast lon={state.lon} lat={state.lat} />}        
         </View> 
      
@@ -165,7 +169,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 1,
     
-  },
+  }, 
+  error: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    
+  }
 
 
 });
