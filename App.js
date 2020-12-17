@@ -5,12 +5,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './Screens/HomeScreen';
 import MapScreen from './Screens/MapScreen';
-import CoordinatesProvider ,{ MyContext } from './contexts/MapContext';
+
 import * as Location from 'expo-location';
 
 
 const Tab = createBottomTabNavigator();
- function Navigation() {
+ export default function App() {
 
   const [errorMessage, setErrorMessage] = useState('')
   const [coordinates,setCoordinates] = useState(null)
@@ -23,10 +23,7 @@ const Tab = createBottomTabNavigator();
     }
     let location = await Location.getCurrentPositionAsync({});
     setCoordinates({lat: location.coords.latitude,lon: location.coords.longitude})
-    console.log(coordinates)
-    
-
-
+ 
   }
 
   useEffect(()=>{
@@ -57,13 +54,10 @@ const Tab = createBottomTabNavigator();
 }
 
 
-export default function App() {
-  return (<CoordinatesProvider>
-    <Navigation />
-    
-  </CoordinatesProvider>)
+/*export default function App() {
+  return (<Navigation />)
   
     
   
 }
-
+*/
