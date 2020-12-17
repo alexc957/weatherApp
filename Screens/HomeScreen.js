@@ -4,7 +4,7 @@ import Weather from '../components//weather';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import Forecast from '../components/Forecast';
 import { MaterialIcons } from '@expo/vector-icons';
-const API_URL = 'http://192.168.100.20:5000/weather';
+const API_URL = 'https://aweatherbackend.herokuapp.com/weather';
 /* export default function HomeScreen({coordinates, setCoordinates}) {
     
   

@@ -7,7 +7,7 @@ import ForecastCard from './ForecastCard';
 
 
 
-const URL = 'http://192.168.100.20:5000/forecast?'
+const URL = 'https://aweatherbackend.herokuapp.com/forecast?'
 
 
 
