@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bce6ccf-ca62-4f37-b38a-356477fa9bec" name="Default Changelist" comment="" />
+    <list default="true" id="8bce6ccf-ca62-4f37-b38a-356477fa9bec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Forecast.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Forecast.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ForecastCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ForecastCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/weather.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/weather.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +25,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -31,5 +43,11 @@
       <workItem from="1607177048680" duration="30000" />
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="301" y="102" width="1200" height="584" key="AVDManager" timestamp="1608497688041">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="301" y="102" width="1200" height="584" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1608497688041" />
   </component>
 </project>

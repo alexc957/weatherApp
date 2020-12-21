@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text,StyleSheet, Dimensions} from 'react-native'
 import MapView, {Marker} from 'react-native-maps';
-import {MyContext} from '../contexts/MapContext';
+
 
 
 
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
     }
 
-    static contextType = MyContext;
+   
 
     render(){
       const latitudeDelta = 0.0922;

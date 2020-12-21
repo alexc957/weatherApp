@@ -1,86 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import {ScrollView,StyleSheet} from 'react-native';
 import ForecastCard from './ForecastCard'; 
-import {MyContext} from '../contexts/MapContext';
 
 
 
 
 
-const URL = 'http://192.168.100.20:5000/forecast?'
 
-
-class Forecast extends React.Component {
-    static contextType = MyContext;
-    constructor(props){
-       
-        super(props)
-        this.state = {
-            forecastList: [],
-            errorMessage: '',
-            lat: this.props.lat,
-            lon: this.props.lon,
-        }
-        this.fetchDat = this.fetchDat.bind(this)
-    }
-
-    componentDidMount(){
-        this.fetchDat()
-       
-        
-    }
-    componentDidUpdate(){
-       // this.context.updateCoordinates(this.props.lat,this.props.lon);
-       console.log('eh?');
-    }
-
-   /* shouldComponentUpdate(nextProps,nextState){
-        return Math.abs( this.state.lat - nextProps.lat)>0.2 || Math.abs(this.state.lon - nextProps.lon)>0.2;
-    }*/
-
-
-    
-  
-
-
-
-    async fetchDat() {
-        try {
-            
-    
-            const data = await fetch(
-                `${URL}lat=${this.state.lat}&lon=${this.state.lon}`
-    
-            )
-
-            if(data.status===200){
-                const jsonData = await data.json();
-                this.setState({forecastList: jsonData, errorMessage: ''})
-                
-
-            } else {
-                const message = await data.json()
-                this.setState({forecastList: [],errorMessage: message})
-            }
-            
-        }catch(error){
-            console.log('error?');
-            console.log(error);
-        }
-    }
+const URL = 'https://aweatherbackend.herokuapp.com/forecast?'
 
 
 
 
-    render(){
-        return <ScrollView horizontal={true} style={styles.forecastContainer}>
-        {this.state.forecastList.map(day => <ForecastCard {...day} key={day.dt}  />)}
-     </ScrollView>   
-    }
-
-}
-
-/*export default function Forecast({lon,lat}) {
+export default function Forecast({lon,lat}) {
 
 
     
@@ -110,8 +42,7 @@ class Forecast extends React.Component {
             }
             
         }catch(error){
-            console.log('error?');
-            console.log(error);
+         setErrorMessage("Could Not get any data")
         }
     }
 
@@ -131,7 +62,7 @@ class Forecast extends React.Component {
 
     
 }
-*/
+
 
 const styles = StyleSheet.create({
     forecastContainer: {
@@ -143,7 +74,11 @@ const styles = StyleSheet.create({
         width: 250,
         marginTop: 25,
     
-      }
+      },
+      text: {
+        textAlign: "center",
+        fontSize: 13,
+        color: '#dcdcdc'
+    }
 })
 
-export default Forecast

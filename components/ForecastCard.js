@@ -24,11 +24,12 @@ export default function Forecast({dt,tempMin,tempMax,weather,icon}){
 const styles = StyleSheet.create({
     card: {
         borderWidth: 2,
-        borderColor: 'gray',
+        borderColor: '#F7882F',
         width: 105,
         height: 120,
         margin: 5,
-        borderRadius: 20
+        borderRadius: 20,
+       // backgroundColor: '#2d545e'
       
         
     },
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: "center",
-        fontSize: 13
+        fontSize: 13,
+        color: '#dcdcdc'
     }
 })
