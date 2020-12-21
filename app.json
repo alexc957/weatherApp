@@ -31,12 +31,13 @@
       "config": {
         "googleMaps": {
           "apiKey": ""
-        }        
+        }
       }
-
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Just a small weather app I did to test my react native skills using ReactNavigation, mapbox, openweather map and google maps. ",
+    "githubUrl": "https://github.com/alexc957/weatherApp"
   }
 }

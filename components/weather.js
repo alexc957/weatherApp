@@ -20,11 +20,11 @@ export default function Weather({location, weather,temperature, tempMax,tempMin,
       <View style={styles.textContainer}>
 
       
-        <Text>Weather: {weather}</Text>
-        <Text>Temperature: {temperature}° C</Text>
-        <Text>Max temperature {tempMax}° C</Text>
-        <Text>Min temperature {tempMin}° C</Text>
-        <Text>humidity {humidity}%</Text>
+        <Text style={styles.text}>Weather: {weather}</Text>
+        <Text style={styles.text}>Temperature: {temperature}° C</Text>
+        <Text style={styles.text}>Max temperature {tempMax}° C</Text>
+        <Text style={styles.text}>Min temperature {tempMin}° C</Text>
+        <Text style={styles.text}>humidity {humidity}%</Text>
 
       </View>
 
@@ -35,7 +35,7 @@ export default function Weather({location, weather,temperature, tempMax,tempMin,
 const styles = StyleSheet.create({
     icon: {
         
-        borderColor: 'gray',
+        borderColor: '#F7882F',
         borderRadius: 25,
         borderWidth: 2,
         width: 160,
@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         paddingTop: 5,
+        color: '#dcdcdc'
         
+    },
+    text : {
+        color: '#dcdcdc'
     }
 })

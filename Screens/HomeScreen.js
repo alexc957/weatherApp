@@ -159,10 +159,12 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'space-evenly',
     marginBottom: '4%',
+    
   },
   input: {
     width: 90,
     borderColor: 'gray',
+    color: '#dcdcdc',
     borderWidth: 2,
     height: 35,
     borderRadius: 5,
